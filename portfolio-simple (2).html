@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asmitaa Sharma: Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF8F4;
+    --surface:#FFFFFF;
+    --ink:#232323;
+    --muted:#6B6B65;
+    --line:#E6E2D9;
+    --teal:#2F6F62;
+    --gold:#C99A3D;
+    --sans:'Inter', -apple-system, sans-serif;
+    --serif:'Fraunces', Georgia, serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.65;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;border-radius:8px;}
+
+  :focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px;}
+
+  /* ===== NAV ===== */
+  header.site-nav{
+    position:sticky;top:0;z-index:10;
+    background:rgba(250,248,244,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:820px;margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-name{font-family:var(--serif);font-weight:600;font-size:19px;}
+  .nav-links{display:flex;gap:26px;}
+  .nav-links a{font-size:14px;color:var(--muted);}
+  .nav-links a:hover{color:var(--teal);}
+
+  /* mobile menu via checkbox hack */
+  #nav-toggle{display:none;}
+  .nav-toggle-label{display:none;cursor:pointer;font-size:14px;font-weight:600;color:var(--teal);}
+
+  @media (max-width:640px){
+    .nav-links{
+      display:none;
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--surface);
+      border-bottom:1px solid var(--line);
+      flex-direction:column;
+      gap:0;
+      padding:8px 0;
+    }
+    .nav-links a{padding:12px 24px;border-top:1px solid var(--line);}
+    .nav-toggle-label{display:block;}
+    #nav-toggle:checked ~ .nav-links{display:flex;}
+  }
+
+  /* ===== SECTIONS ===== */
+  section{padding:64px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .eyebrow{
+    font-size:12px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:10px;
+  }
+  h2{font-family:var(--serif);font-size:clamp(24px,3vw,30px);font-weight:600;margin-bottom:28px;}
+
+  /* ===== HERO ===== */
+  .hero{padding:80px 0 64px;}
+  .hero h1{
+    font-family:var(--serif);
+    font-size:clamp(34px,5vw,52px);
+    font-weight:700;
+    line-height:1.1;
+    margin-bottom:16px;
+  }
+  .hero h1 span{color:var(--teal);}
+  .hero p{font-size:17px;color:var(--muted);max-width:520px;margin-bottom:28px;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:12px 24px;border-radius:6px;font-size:14px;font-weight:600;
+    border:1px solid var(--ink);
+  }
+  .btn-solid{background:var(--ink);color:var(--bg);}
+  .btn-solid:hover{background:var(--teal);border-color:var(--teal);}
+  .btn-outline{border-color:var(--line);color:var(--ink);}
+  .btn-outline:hover{border-color:var(--ink);}
+
+  /* ===== ABOUT ===== */
+  .about-grid{display:grid;grid-template-columns:140px 1fr;gap:32px;align-items:start;}
+  .avatar{
+    width:140px;height:140px;border-radius:50%;
+    background:linear-gradient(150deg,var(--teal),var(--gold));
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:40px;color:#fff;font-weight:600;
+  }
+  .about-text p{color:var(--muted);margin-bottom:14px;}
+  .about-text strong{color:var(--ink);}
+
+  /* ===== SKILLS ===== */
+  .skill-group{margin-bottom:20px;}
+  .skill-group h3{font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px;font-weight:600;}
+  .tag-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    background:var(--surface);border:1px solid var(--line);
+    padding:6px 14px;border-radius:20px;font-size:13.5px;
+  }
+
+  /* ===== PROJECTS ===== */
+  .project-list{display:flex;flex-direction:column;gap:20px;}
+  .project{
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;
+    padding:24px;
+  }
+  .project h3{font-family:var(--serif);font-size:19px;margin-bottom:6px;}
+  .project p{color:var(--muted);font-size:14.5px;margin-bottom:12px;}
+  .project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+  .project-tags span{font-size:12px;color:var(--teal);background:rgba(47,111,98,0.08);padding:3px 10px;border-radius:4px;}
+  .project-links a{font-size:13.5px;font-weight:600;color:var(--teal);margin-right:18px;}
+  .project-links a:hover{text-decoration:underline;}
+
+  /* ===== CERTIFICATIONS ===== */
+  .cert{
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;
+    padding:16px 0;border-top:1px solid var(--line);
+  }
+  .cert:last-child{border-bottom:1px solid var(--line);}
+  .cert-name{font-weight:600;}
+  .cert-issuer{color:var(--muted);font-size:13.5px;}
+  .cert-date{color:var(--muted);font-size:13.5px;white-space:nowrap;}
+
+  /* ===== EDUCATION ===== */
+  .edu-item{padding:18px 0;border-top:1px solid var(--line);}
+  .edu-item:last-child{border-bottom:1px solid var(--line);}
+  .edu-degree{font-weight:600;font-size:16px;}
+  .edu-school{color:var(--teal);font-size:14px;margin-top:2px;}
+  .edu-meta{color:var(--muted);font-size:13px;margin-top:2px;}
+  .edu-desc{color:var(--muted);font-size:14px;margin-top:8px;}
+
+  /* ===== RESUME ===== */
+  .resume-box{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;
+  }
+  .resume-box p{color:var(--muted);font-size:14.5px;}
+
+  /* ===== CONTACT ===== */
+  .contact-list{display:flex;flex-direction:column;gap:12px;max-width:420px;}
+  .contact-item{
+    display:flex;justify-content:space-between;
+    padding:14px 18px;border:1px solid var(--line);border-radius:8px;background:var(--surface);
+  }
+  .contact-item .label{color:var(--muted);font-size:13px;}
+  .contact-item .value{font-weight:600;}
+
+  /* ===== FOOTER ===== */
+  footer{padding:32px 0 48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  footer p{font-size:13px;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-name">Asmitaa Sharma</a>
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">Menu</label>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#education">Education</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+
+  <section class="hero">
+    <h1>Hi, I'm <span>Asmitaa Sharma</span>.<br>CS Student &amp; AI/ML Enthusiast.</h1>
+    <p>B.Tech Computer Science Engineering student with a "build to learn" mindset exploring Software Development and AI/ML through hands-on projects.</p>
+    <div class="btn-row">
+      <a href="#projects" class="btn btn-solid">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="eyebrow">About</div>
+    <h2>A little about me</h2>
+    <div class="about-grid">
+      <div class="avatar"><img src="IMG_20260224_184258836_.jpg" alt="Asmitaa Sharma"></div>
+      <div class="about-text">
+        <p>I'm a <strong>B.Tech Computer Science Engineering</strong> student at JECRC Foundation (2025–2029) with a deep interest in <strong>Software Development</strong> and <strong>AI/ML</strong>.
+        My approach is "build to learn".I strengthen my foundations through hands-on projects
+        I'm currently sharpening my skills in Python and Machine Learning, exploring web development, and always looking for new things to learn and interesting problems to solve.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow">Skills</div>
+    <h2>What I work with</h2>
+    <div class="skill-group">
+      <h3>Languages</h3>
+      <div class="tag-list">
+        <span class="tag">Python</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">HTML &amp; CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Focus Areas</h3>
+      <div class="tag-list">
+        <span class="tag">Machine Learning</span><span class="tag">AI / LLMs</span><span class="tag">Web Development</span><span class="tag">Generative AI</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Tools</h3>
+      <div class="tag-list">
+        <span class="tag">Git</span><span class="tag">VS Code</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="eyebrow">Projects</div>
+    <h2>Selected work</h2>
+    <div class="project-list">
+      <div class="project">
+        <h3>Bank Simulator</h3>
+        <p>A console-based banking system built in C, simulating core operations like account creation, deposits, withdrawals, and transaction handling.</p>
+        <div class="project-tags"><span>C</span></div>
+      </div>
+      <div class="project">
+        <h3>Calendar and Reminder App</h3>
+        <p>A Python application that displays a monthly calendar with the ability to set and manage reminders.</p>
+        <div class="project-tags"><span>Python</span></div>
+      </div>
+      <div class="project">
+        <h3>Portfolio Website</h3>
+        <p>This personal portfolio site built from scratch with HTML and CSS to showcase my projects, skills, and background.</p>
+        <div class="project-tags"><span>HTML</span><span>CSS</span></div>
+      </div>
+      <div class="project">
+        <h3>Smart India Hackathon 2025</h3>
+        <p>Competed with team Tech Titans in SIH 2025, collaborating to design and build a solution under real-world problem-statement constraints.</p>
+        <div class="project-tags"><span>Team Project</span><span>Hackathon</span></div>
+      </div>
+      <div class="project">
+        <h3>Navothon</h3>
+        <p>  </p>
+        <div class="project-tags"><span>Team Project</span><span>Hackathon</span></div>
+      </div> 
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="eyebrow">Certifications</div>
+    <h2>Certifications</h2>
+    <div class="cert">
+      <div>
+        <div class="cert-name">OCI 2025 Certified AI Foundations Associate</div>
+        <div class="cert-issuer">Oracle Cloud Infrastructure</div>
+      </div>
+      <div class="cert-date">2025</div>
+    </div>
+    <div class="cert">
+      <div>
+        <div class="cert-name">Programming Fundamentals using Python – Science Graduates Foundation Program</div>
+        <div class="cert-issuer">Infosys Springboard</div>
+      </div>
+      <div class="cert-date">2026</div>
+    </div>
+    <div class="cert">
+      <div>
+        <div class="cert-name">Data Structures and Algorithms: Deep Dive into DSA using C++</div>
+        <div class="cert-issuer">Udemy</div>
+      </div>
+      <div class="cert-date">2026</div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="eyebrow">Education</div>
+    <h2>Education</h2>
+    <div class="edu-item">
+      <div class="edu-degree">B.Tech in Computer Science Engineering</div>
+      <div class="edu-school">JECRC Foundation</div>
+      <div class="edu-meta">2025 – 2029 · SGPA: 9.66</div>
+      <div class="edu-desc">Focused on Software Development, AI/ML, and Web Development, with a hands-on, project-driven approach to learning.</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-degree">Schooling</div>
+      <div class="edu-school">Saint Soldier Public School</div>
+      <div class="edu-meta">Completed 2024</div>
+    </div>
+  </section>
+
+  <section id="resume">
+    <div class="eyebrow">Resume</div>
+    <h2>Download my resume</h2>
+    <div class="resume-box">
+      <p>Get a full copy of my resume as a PDF.</p>
+      <a href="resume.pdf" download class="btn btn-solid">Download Resume</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="eyebrow">Contact</div>
+    <h2>Get in touch</h2>
+    <div class="contact-list">
+      <a href="mailto:asmitaasharma335@gmail.com" class="contact-item">
+        <span class="label">Email</span><span class="value">asmitaasharma335@gmail.com</span>
+      </a>
+      <a href="tel:+917878214017" class="contact-item">
+        <span class="label">Phone</span><span class="value">+91 7878214017</span>
+      </a>
+      <a href="https://www.linkedin.com/in/asmitaa-sharma-31aa79373" class="contact-item">
+        <span class="label">LinkedIn</span><span class="value">linkedin.com/in/asmitaa-sharma</span>
+      </a>
+      <a href="https://github.com/asmi006" class="contact-item">
+        <span class="label">GitHub</span><span class="value">github.com/asmi006</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Asmitaa Sharma.</p>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+</div>
+</body>
+</html>
